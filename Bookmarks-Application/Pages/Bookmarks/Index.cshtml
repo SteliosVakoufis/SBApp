@@ -1,0 +1,43 @@
+﻿@page
+@model Bookmarks_Application.Pages.Bookmarks.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-center">Bookmarks</h1>
+
+<p>
+    <a class="btn btn-success border float-start" asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr class="row">
+            <th class="col-3">
+                @Html.DisplayNameFor(model => model.Bookmark[0].Title)
+            </th>
+            <th class="col-6">
+                @Html.DisplayNameFor(model => model.Bookmark[0].Url)
+            </th>
+            <th class="col-3"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Bookmark)
+        {
+            <tr class="row">
+                <td class="col-3">
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td class="col-6">
+                    <a href="@item.Url">@Html.DisplayFor(modelItem => item.Url)</a>
+                </td>
+                <td class="col-3">
+                    <a class="btn btn-secondary border" asp-page="./Edit" asp-route-id="@item.Id">Edit</a>
+                    <a class="btn btn-primary border" asp-page="./Details" asp-route-id="@item.Id">Details</a>
+                    <a class="btn btn-danger border" asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
